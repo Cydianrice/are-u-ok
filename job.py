@@ -24,7 +24,6 @@ class Job:
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
         'Cache-Control': 'max-age=0',
-        'DNT': 1,
         'Content-Type': 'application/x-www-form-urlencoded',
         'Host': 'pass.neu.edu.cn',
         'Origin': 'https://pass.neu.edu.cn',
@@ -37,7 +36,6 @@ class Job:
         'Accept-Encoding': 'gzip, deflate',
         'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
         'Cache-Control': 'max-age=0',
-        'DNT': 1,
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
         'X-Forwarded-For': '172.19.6.160',
     }
@@ -99,7 +97,6 @@ class Job:
             'Accept-Encoding': 'gzip, deflate',
             'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
             'Cache-Control': 'max-age=0',
-            'DNT': 1,
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'e-report.neu.edu.cn',
             'Origin': 'https://e-report.neu.edu.cn',
