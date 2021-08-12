@@ -23,6 +23,8 @@ class Job:
         'Content-Type': 'application/x-www-form-urlencoded',
         'Host': 'pass.neu.edu.cn',
         'Origin': 'https://pass.neu.edu.cn',
+        'User-Agent': 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+        'X-Forwarded-For': '172.19.6.160',
     }
 
     _init_url: str = 'https://e-report.neu.edu.cn/login'
@@ -52,7 +54,7 @@ class Job:
     def __init__(self, username: str, password: str, ip: str = ''):
         self._username: str = username
         self._password: str = password
-        self._ip: str = ip
+        self._ip: str = '172.19.6.160'
         self._client: Session = session()
 
         # 获取到的跨步骤共用中间信息
@@ -81,6 +83,7 @@ class Job:
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'e-report.neu.edu.cn',
             'Origin': 'https://e-report.neu.edu.cn',
+            'User-Agent': 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
         }
         if len(self._ip) > 0:
             h['X-Forwarded-For'] = self._ip
