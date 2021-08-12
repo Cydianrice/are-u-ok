@@ -20,10 +20,25 @@ def get_current_hour() -> int:
 
 class Job:
     _login_header: dict = {
+        'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Cache-Control': 'max-age=0',
+        'DNT': 1,
         'Content-Type': 'application/x-www-form-urlencoded',
         'Host': 'pass.neu.edu.cn',
         'Origin': 'https://pass.neu.edu.cn',
-        'User-Agent': 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+        'X-Forwarded-For': '172.19.6.160',
+    }
+
+     _normal_header: dict = {
+        'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+        'Accept-Encoding': 'gzip, deflate',
+        'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Cache-Control': 'max-age=0',
+        'DNT': 1,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
         'X-Forwarded-For': '172.19.6.160',
     }
 
@@ -80,10 +95,15 @@ class Job:
     @property
     def _update_info_header(self) -> dict:
         h = {
+            'Accept' : 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.9',
+            'Accept-Encoding': 'gzip, deflate',
+            'Accept-Language': 'zh-CN,zh;q=0.9,en-US;q=0.8,en;q=0.7',
+            'Cache-Control': 'max-age=0',
+            'DNT': 1,
             'Content-Type': 'application/x-www-form-urlencoded',
             'Host': 'e-report.neu.edu.cn',
             'Origin': 'https://e-report.neu.edu.cn',
-            'User-Agent': 'User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
         }
         if len(self._ip) > 0:
             h['X-Forwarded-For'] = self._ip
@@ -121,7 +141,7 @@ class Job:
 
     def _login(self) -> (bool, str):
         try:
-            resp: Response = self._client.get(self._init_url)
+            resp: Response = self._client.get(self._init_url, headers=self._normal_header)
             lt: list = self._lt_matcher.findall(resp.text)
             lp: list = self._login_path_matcher.findall(resp.text)
             if len(lt) < 1 or len(lp) < 1:
@@ -138,7 +158,7 @@ class Job:
 
     def _login_service(self) -> (bool, str):
         try:
-            resp: Response = self._client.get(self._service_url)
+            resp: Response = self._client.get(self._service_url, headers=self._normal_header)
             self._token = self._token_matcher.findall(resp.text)[0]
             self._name = self._name_matcher.findall(resp.text)[0]
             return True, ''
@@ -147,7 +167,7 @@ class Job:
 
     def _get_info(self) -> (bool, str):
         try:
-            resp: Response = self._client.get(self._info_url)
+            resp: Response = self._client.get(self._info_url, headers=self._normal_header)
 
             if resp.text.find(self._username) == -1:
                 return False, self._bad_info
