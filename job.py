@@ -29,6 +29,8 @@ class Job:
         'Origin': 'https://pass.neu.edu.cn',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
         'X-Forwarded-For': '172.19.6.160',
+        'X-REAL-IP': '172.19.6.160',
+        'REMOTE-ADDR':　'172.19.6.160',
     }
 
     _normal_header: dict = {
@@ -38,6 +40,8 @@ class Job:
         'Cache-Control': 'max-age=0',
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
         'X-Forwarded-For': '172.19.6.160',
+        'X-REAL-IP': '172.19.6.160',
+        'REMOTE-ADDR':　'172.19.6.160',
     }
 
     _init_url: str = 'https://e-report.neu.edu.cn/login'
@@ -101,6 +105,9 @@ class Job:
             'Host': 'e-report.neu.edu.cn',
             'Origin': 'https://e-report.neu.edu.cn',
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.107 Safari/537.36',
+            'X-Forwarded-For': '172.19.6.160',
+            'X-REAL-IP': '172.19.6.160',
+            'REMOTE-ADDR':　'172.19.6.160',
         }
         if len(self._ip) > 0:
             h['X-Forwarded-For'] = self._ip
